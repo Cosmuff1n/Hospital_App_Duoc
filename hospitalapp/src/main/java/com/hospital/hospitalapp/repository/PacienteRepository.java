@@ -1,6 +1,6 @@
 package com.hospital.hospitalapp.repository;
 
-import cl.duoc.hospitalvm.entity.Paciente;
+import com.hospital.hospitalapp.entity.Paciente;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;

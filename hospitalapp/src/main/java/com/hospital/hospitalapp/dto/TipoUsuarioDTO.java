@@ -18,5 +18,5 @@ public class TipoUsuarioDto {
     @Size(max = 40)
     private String nombre;
 
-    private BigDecimal totalCostos;
+    private Decimal totalCostos;
 }
