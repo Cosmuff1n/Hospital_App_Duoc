@@ -30,7 +30,7 @@ public class MedicoServiceImpl implements MedicoService {
         List<MedicoDto> dtos = new ArrayList<>();
 
         for (Medico entity : entities) {
-            MedicoDto dto = toDto(entity);
+            MedicoDto dto = toDTO(entity);
             dtos.add(dto);
         }
 
@@ -41,7 +41,7 @@ public class MedicoServiceImpl implements MedicoService {
     @Transactional(readOnly = true)
     public MedicoDto findById(Long id) {
         Medico entity = getEntity(id);
-        return toDto(entity);
+        return toDTO(entity);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class MedicoServiceImpl implements MedicoService {
         entity.setJefeTurno(dto.getJefeTurno().trim());
 
         Medico savedEntity = medicoRepository.save(entity);
-        return toDto(savedEntity);
+        return toDTO(savedEntity);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class MedicoServiceImpl implements MedicoService {
         entity.setJefeTurno(dto.getJefeTurno().trim());
 
         Medico savedEntity = medicoRepository.save(entity);
-        return toDto(savedEntity);
+        return toDTO(savedEntity);
     }
 
     @Override
@@ -96,7 +96,7 @@ public class MedicoServiceImpl implements MedicoService {
         List<MedicoDto> dtos = new ArrayList<>();
 
         for (Medico entity : entities) {
-            MedicoDto dto = toDto(entity);
+            MedicoDto dto = toDTO(entity);
             dtos.add(dto);
         }
 
@@ -113,7 +113,7 @@ public class MedicoServiceImpl implements MedicoService {
         return optionalMedico.get();
     }
 
-    private MedicoDto toDto(Medico entity) {
+    private MedicoDto toDTO(Medico entity) {
         MedicoDto dto = new MedicoDto();
         dto.setIdMedico(entity.getIdMedico());
         dto.setRunMedico(entity.getRunMedico());

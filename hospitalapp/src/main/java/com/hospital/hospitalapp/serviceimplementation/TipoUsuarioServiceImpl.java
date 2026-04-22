@@ -30,7 +30,7 @@ public class TipoUsuarioServiceImpl implements TipoUsuarioService {
         List<TipoUsuarioDto> dtos = new ArrayList<>();
 
         for (TipoUsuario entity : entities) {
-            TipoUsuarioDto dto = toDto(entity);
+            TipoUsuarioDto dto = toDTO(entity);
             dtos.add(dto);
         }
 
@@ -41,7 +41,7 @@ public class TipoUsuarioServiceImpl implements TipoUsuarioService {
     @Transactional(readOnly = true)
     public TipoUsuarioDto findById(Long id) {
         TipoUsuario entity = getEntity(id);
-        return toDto(entity);
+        return toDTO(entity);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class TipoUsuarioServiceImpl implements TipoUsuarioService {
         entity.setNombre(dto.getNombre().trim());
 
         TipoUsuario savedEntity = tipoUsuarioRepository.save(entity);
-        return toDto(savedEntity);
+        return toDTO(savedEntity);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class TipoUsuarioServiceImpl implements TipoUsuarioService {
         entity.setNombre(dto.getNombre().trim());
 
         TipoUsuario savedEntity = tipoUsuarioRepository.save(entity);
-        return toDto(savedEntity);
+        return toDTO(savedEntity);
     }
 
     @Override
@@ -104,7 +104,7 @@ public class TipoUsuarioServiceImpl implements TipoUsuarioService {
         return optionalTipoUsuario.get();
     }
 
-    private TipoUsuarioDto toDto(TipoUsuario entity) {
+    private TipoUsuarioDto toDTO(TipoUsuario entity) {
         TipoUsuarioDto dto = new TipoUsuarioDto();
         dto.setId(entity.getId());
         dto.setNombre(entity.getNombre());

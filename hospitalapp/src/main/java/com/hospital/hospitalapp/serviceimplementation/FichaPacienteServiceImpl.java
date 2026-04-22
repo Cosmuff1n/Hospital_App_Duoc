@@ -37,7 +37,7 @@ public class FichaPacienteServiceImpl implements FichaPacienteService {
         List<FichaPacienteDto> dtos = new ArrayList<>();
 
         for (FichaPaciente entity : entities) {
-            FichaPacienteDto dto = toDto(entity);
+            FichaPacienteDto dto = toDTO(entity);
             dtos.add(dto);
         }
 
@@ -48,7 +48,7 @@ public class FichaPacienteServiceImpl implements FichaPacienteService {
     @Transactional(readOnly = true)
     public FichaPacienteDto findById(Long idPaciente) {
         FichaPaciente entity = getEntity(idPaciente);
-        return toDto(entity);
+        return toDTO(entity);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class FichaPacienteServiceImpl implements FichaPacienteService {
         entity.setDatosPersonales5(dto.getDatosPersonales5());
 
         FichaPaciente savedEntity = fichaPacienteRepository.save(entity);
-        return toDto(savedEntity);
+        return toDTO(savedEntity);
     }
 
     @Override
@@ -84,7 +84,7 @@ public class FichaPacienteServiceImpl implements FichaPacienteService {
         entity.setDatosPersonales5(dto.getDatosPersonales5());
 
         FichaPaciente savedEntity = fichaPacienteRepository.save(entity);
-        return toDto(savedEntity);
+        return toDTO(savedEntity);
     }
 
     @Override
@@ -113,7 +113,7 @@ public class FichaPacienteServiceImpl implements FichaPacienteService {
         return optionalPaciente.get();
     }
 
-    private FichaPacienteDto toDto(FichaPaciente entity) {
+    private FichaPacienteDto toDTO(FichaPaciente entity) {
         FichaPacienteDto dto = new FichaPacienteDto();
         dto.setIdPaciente(entity.getIdPaciente());
         dto.setDatosPersonales(entity.getDatosPersonales());

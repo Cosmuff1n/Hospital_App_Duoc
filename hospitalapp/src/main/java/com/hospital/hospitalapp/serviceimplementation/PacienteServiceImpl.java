@@ -44,7 +44,7 @@ public class PacienteServiceImpl implements PacienteService {
         List<PacienteDto> dtos = new ArrayList<>();
 
         for (Paciente entity : entities) {
-            PacienteDto dto = toDto(entity);
+            PacienteDto dto = toDTO(entity);
             dtos.add(dto);
         }
 
@@ -55,7 +55,7 @@ public class PacienteServiceImpl implements PacienteService {
     @Transactional(readOnly = true)
     public PacienteDto findById(Long id) {
         Paciente entity = getEntity(id);
-        return toDto(entity);
+        return toDTO(entity);
     }
 
     @Override
@@ -77,7 +77,7 @@ public class PacienteServiceImpl implements PacienteService {
         entity.setTipoUsuario(tipoUsuario);
 
         Paciente savedEntity = pacienteRepository.save(entity);
-        return toDto(savedEntity);
+        return toDTO(savedEntity);
     }
 
     @Override
@@ -102,7 +102,7 @@ public class PacienteServiceImpl implements PacienteService {
         entity.setTipoUsuario(tipoUsuario);
 
         Paciente savedEntity = pacienteRepository.save(entity);
-        return toDto(savedEntity);
+        return toDTO(savedEntity);
     }
 
     @Override
@@ -121,7 +121,7 @@ public class PacienteServiceImpl implements PacienteService {
         }
 
         Paciente paciente = optionalPaciente.get();
-        PacienteDto dto = toDto(paciente);
+        PacienteDto dto = toDTO(paciente);
 
         FichaPaciente ficha = paciente.getFichaPaciente();
 
@@ -162,7 +162,7 @@ public class PacienteServiceImpl implements PacienteService {
         return optionalTipoUsuario.get();
     }
 
-    private PacienteDto toDto(Paciente entity) {
+    private PacienteDto toDTO(Paciente entity) {
         PacienteDto dto = new PacienteDto();
         dto.setIdPaciente(entity.getIdPaciente());
         dto.setRun(entity.getRun());

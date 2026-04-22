@@ -42,7 +42,7 @@ public class AtencionServiceImpl implements AtencionService {
         List<AtencionDto> dtos = new ArrayList<>();
 
         for (Atencion entity : entities) {
-            AtencionDto dto = toDto(entity);
+            AtencionDto dto = toDTO(entity);
             dtos.add(dto);
         }
 
@@ -53,7 +53,7 @@ public class AtencionServiceImpl implements AtencionService {
     @Transactional(readOnly = true)
     public AtencionDto findById(Long id) {
         Atencion entity = getEntity(id);
-        return toDto(entity);
+        return toDTO(entity);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class AtencionServiceImpl implements AtencionService {
         entity.setComentario(dto.getComentario());
 
         Atencion savedEntity = atencionRepository.save(entity);
-        return toDto(savedEntity);
+        return toDTO(savedEntity);
     }
 
     @Override
@@ -87,7 +87,7 @@ public class AtencionServiceImpl implements AtencionService {
         entity.setComentario(dto.getComentario());
 
         Atencion savedEntity = atencionRepository.save(entity);
-        return toDto(savedEntity);
+        return toDTO(savedEntity);
     }
 
     @Override
@@ -105,7 +105,7 @@ public class AtencionServiceImpl implements AtencionService {
         List<AtencionDto> dtos = new ArrayList<>();
 
         for (Atencion entity : entities) {
-            AtencionDto dto = toDto(entity);
+            AtencionDto dto = toDTO(entity);
             dto.setMedicoResponsable(entity.getMedico().getNombreCompleto());
             dtos.add(dto);
         }
@@ -122,7 +122,7 @@ public class AtencionServiceImpl implements AtencionService {
         List<AtencionDto> dtos = new ArrayList<>();
 
         for (Atencion entity : entities) {
-            AtencionDto dto = toDto(entity);
+            AtencionDto dto = toDTO(entity);
             dto.setPacienteAtendido(entity.getPaciente().getNombres() + " " + entity.getPaciente().getApellidos());
             dtos.add(dto);
         }
@@ -137,7 +137,7 @@ public class AtencionServiceImpl implements AtencionService {
         List<AtencionDto> dtos = new ArrayList<>();
 
         for (Atencion entity : entities) {
-            AtencionDto dto = toDto(entity);
+            AtencionDto dto = toDTO(entity);
             dto.setPaciente(entity.getPaciente().getNombres() + " " + entity.getPaciente().getApellidos());
             dto.setMedico(entity.getMedico().getNombreCompleto());
             dtos.add(dto);
@@ -176,7 +176,7 @@ public class AtencionServiceImpl implements AtencionService {
         return optionalMedico.get();
     }
 
-    private AtencionDto toDto(Atencion entity) {
+    private AtencionDto toDTO(Atencion entity) {
         AtencionDto dto = new AtencionDto();
         dto.setId(entity.getId());
         dto.setFechaAtencion(entity.getFechaAtencion());
