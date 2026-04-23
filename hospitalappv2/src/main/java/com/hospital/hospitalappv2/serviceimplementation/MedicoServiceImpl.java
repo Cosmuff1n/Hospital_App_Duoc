@@ -1,17 +1,19 @@
-package com.hospital.hospitalapp.serviceimplementation;
+package com.hospital.hospitalappv2.serviceimplementation;
 
 
-import com.hospital.hospitalapp.dto.MedicoDto;
-import com.hospital.hospitalapp.entity.Medico;
-import com.hospital.hospitalapp.repository.MedicoRepository;
-import com.hospital.hospitalapp.service.MedicoService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
+
+import com.hospital.hospitalappv2.dto.MedicoDTO;
+import com.hospital.hospitalappv2.model.Medico;
+import com.hospital.hospitalappv2.repository.MedicoRepository;
+import com.hospital.hospitalappv2.service.MedicoService;
 
 @Service
 @Transactional
@@ -25,12 +27,12 @@ public class MedicoServiceImpl implements MedicoService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<MedicoDto> findAll() {
+    public List<MedicoDTO> findAll() {
         List<Medico> entities = medicoRepository.findAll();
-        List<MedicoDto> dtos = new ArrayList<>();
+        List<MedicoDTO> dtos = new ArrayList<>();
 
         for (Medico entity : entities) {
-            MedicoDto dto = toDTO(entity);
+            MedicoDTO dto = toDTO(entity);
             dtos.add(dto);
         }
 
@@ -39,13 +41,13 @@ public class MedicoServiceImpl implements MedicoService {
 
     @Override
     @Transactional(readOnly = true)
-    public MedicoDto findById(Long id) {
+    public MedicoDTO findById(Long id) {
         Medico entity = getEntity(id);
         return toDTO(entity);
     }
 
     @Override
-    public MedicoDto create(MedicoDto dto) {
+    public MedicoDTO create(MedicoDTO dto) {
         boolean medicoExiste = medicoRepository.existsByRunMedico(dto.getRunMedico());
 
         if (medicoExiste) {
@@ -63,7 +65,7 @@ public class MedicoServiceImpl implements MedicoService {
     }
 
     @Override
-    public MedicoDto update(Long id, MedicoDto dto) {
+    public MedicoDTO update(Long id, MedicoDTO dto) {
         Medico entity = getEntity(id);
 
         if (!entity.getRunMedico().equals(dto.getRunMedico())) {
@@ -91,12 +93,12 @@ public class MedicoServiceImpl implements MedicoService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<MedicoDto> getReporteEspecialidades() {
+    public List<MedicoDTO> getReporteEspecialidades() {
         List<Medico> entities = medicoRepository.findAll();
-        List<MedicoDto> dtos = new ArrayList<>();
+        List<MedicoDTO> dtos = new ArrayList<>();
 
         for (Medico entity : entities) {
-            MedicoDto dto = toDTO(entity);
+            MedicoDTO dto = toDTO(entity);
             dtos.add(dto);
         }
 
@@ -113,8 +115,8 @@ public class MedicoServiceImpl implements MedicoService {
         return optionalMedico.get();
     }
 
-    private MedicoDto toDTO(Medico entity) {
-        MedicoDto dto = new MedicoDto();
+    private MedicoDTO toDTO(Medico entity) {
+        MedicoDTO dto = new MedicoDTO();
         dto.setIdMedico(entity.getIdMedico());
         dto.setRunMedico(entity.getRunMedico());
         dto.setNombreCompleto(entity.getNombreCompleto());

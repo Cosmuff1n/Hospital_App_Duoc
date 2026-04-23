@@ -1,4 +1,4 @@
-package com.hospital.hospitalapp.model;
+package com.hospital.hospitalappv2.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -12,8 +12,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -28,11 +26,9 @@ public class Atencion {
     @Column(name = "id")
     private Long id;
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "fecha_atencion", nullable = false)
     private Date fechaAtencion;
 
-    @Temporal(TemporalType.TIME)
     @Column(name = "hora_atencion", nullable = false)
     private Date horaAtencion;
 

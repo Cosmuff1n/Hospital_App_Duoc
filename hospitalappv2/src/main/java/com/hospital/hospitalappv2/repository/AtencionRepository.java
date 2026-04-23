@@ -1,10 +1,12 @@
-package com.hospital.hospitalapp.repository;
+package com.hospital.hospitalappv2.repository;
 
 
-import com.hospital.hospitalapp.entity.Atencion;
 import java.util.Date;
 import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.hospital.hospitalappv2.model.Atencion;
 
 public interface AtencionRepository extends JpaRepository<Atencion, Long> {
 

@@ -1,9 +1,9 @@
-package com.hospital.hospitalapp.serviceimplementation;
+package com.hospital.hospitalappv2.serviceimplementation;
 
-import com.hospital.hospitalapp.dto.TipoUsuarioDto;
-import com.hospital.hospitalapp.entity.TipoUsuario;
-import com.hospital.hospitalapp.repository.TipoUsuarioRepository;
-import com.hospital.hospitalapp.service.TipoUsuarioService;
+import com.hospital.hospitalappv2.dto.TipoUsuarioDTO;
+import com.hospital.hospitalappv2.model.TipoUsuario;
+import com.hospital.hospitalappv2.repository.TipoUsuarioRepository;
+import com.hospital.hospitalappv2.service.TipoUsuarioService;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +25,12 @@ public class TipoUsuarioServiceImpl implements TipoUsuarioService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<TipoUsuarioDto> findAll() {
+    public List<TipoUsuarioDTO> findAll() {
         List<TipoUsuario> entities = tipoUsuarioRepository.findAll();
-        List<TipoUsuarioDto> dtos = new ArrayList<>();
+        List<TipoUsuarioDTO> dtos = new ArrayList<>();
 
         for (TipoUsuario entity : entities) {
-            TipoUsuarioDto dto = toDTO(entity);
+            TipoUsuarioDTO dto = toDTO(entity);
             dtos.add(dto);
         }
 
@@ -39,13 +39,13 @@ public class TipoUsuarioServiceImpl implements TipoUsuarioService {
 
     @Override
     @Transactional(readOnly = true)
-    public TipoUsuarioDto findById(Long id) {
+    public TipoUsuarioDTO findById(Long id) {
         TipoUsuario entity = getEntity(id);
         return toDTO(entity);
     }
 
     @Override
-    public TipoUsuarioDto create(TipoUsuarioDto dto) {
+    public TipoUsuarioDTO create(TipoUsuarioDTO dto) {
         TipoUsuario entity = new TipoUsuario();
         entity.setNombre(dto.getNombre().trim());
 
@@ -54,7 +54,7 @@ public class TipoUsuarioServiceImpl implements TipoUsuarioService {
     }
 
     @Override
-    public TipoUsuarioDto update(Long id, TipoUsuarioDto dto) {
+    public TipoUsuarioDTO update(Long id, TipoUsuarioDTO dto) {
         TipoUsuario entity = getEntity(id);
         entity.setNombre(dto.getNombre().trim());
 
@@ -70,12 +70,12 @@ public class TipoUsuarioServiceImpl implements TipoUsuarioService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<TipoUsuarioDto> getReporteCostosPorTipoUsuario() {
+    public List<TipoUsuarioDTO> getReporteCostosPorTipoUsuario() {
         List<Object[]> rows = tipoUsuarioRepository.findReporteCostosPorTipoUsuario();
-        List<TipoUsuarioDto> dtos = new ArrayList<>();
+        List<TipoUsuarioDTO> dtos = new ArrayList<>();
 
         for (Object[] row : rows) {
-            TipoUsuarioDto dto = new TipoUsuarioDto();
+            TipoUsuarioDTO dto = new TipoUsuarioDTO();
 
             dto.setId((Long) row[0]);
             dto.setNombre((String) row[1]);
@@ -104,8 +104,8 @@ public class TipoUsuarioServiceImpl implements TipoUsuarioService {
         return optionalTipoUsuario.get();
     }
 
-    private TipoUsuarioDto toDTO(TipoUsuario entity) {
-        TipoUsuarioDto dto = new TipoUsuarioDto();
+    private TipoUsuarioDTO toDTO(TipoUsuario entity) {
+        TipoUsuarioDTO dto = new TipoUsuarioDTO();
         dto.setId(entity.getId());
         dto.setNombre(entity.getNombre());
         return dto;

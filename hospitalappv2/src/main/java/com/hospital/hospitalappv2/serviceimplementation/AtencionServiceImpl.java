@@ -1,13 +1,13 @@
-package com.hospital.hospitalapp.serviceimplementation;
+package com.hospital.hospitalappv2.serviceimplementation;
 
-import com.hospital.hospitalapp.dto.AtencionDto;
-import com.hospital.hospitalapp.entity.Atencion;
-import com.hospital.hospitalapp.entity.Medico;
-import com.hospital.hospitalapp.entity.Paciente;
-import com.hospital.hospitalapp.repository.AtencionRepository;
-import com.hospital.hospitalapp.repository.MedicoRepository;
-import com.hospital.hospitalapp.repository.PacienteRepository;
-import com.hospital.hospitalapp.service.AtencionService;
+import com.hospital.hospitalappv2.dto.AtencionDTO;
+import com.hospital.hospitalappv2.model.Atencion;
+import com.hospital.hospitalappv2.model.Medico;
+import com.hospital.hospitalappv2.model.Paciente;
+import com.hospital.hospitalappv2.repository.AtencionRepository;
+import com.hospital.hospitalappv2.repository.MedicoRepository;
+import com.hospital.hospitalappv2.repository.PacienteRepository;
+import com.hospital.hospitalappv2.service.AtencionService;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -37,12 +37,12 @@ public class AtencionServiceImpl implements AtencionService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<AtencionDto> findAll() {
+    public List<AtencionDTO> findAll() {
         List<Atencion> entities = atencionRepository.findAll();
-        List<AtencionDto> dtos = new ArrayList<>();
+        List<AtencionDTO> dtos = new ArrayList<>();
 
         for (Atencion entity : entities) {
-            AtencionDto dto = toDTO(entity);
+            AtencionDTO dto = toDTO(entity);
             dtos.add(dto);
         }
 
@@ -51,13 +51,13 @@ public class AtencionServiceImpl implements AtencionService {
 
     @Override
     @Transactional(readOnly = true)
-    public AtencionDto findById(Long id) {
+    public AtencionDTO findById(Long id) {
         Atencion entity = getEntity(id);
         return toDTO(entity);
     }
 
     @Override
-    public AtencionDto create(AtencionDto dto) {
+    public AtencionDTO create(AtencionDTO dto) {
         Paciente paciente = getPaciente(dto.getIdPaciente());
         Medico medico = getMedico(dto.getIdMedico());
 
@@ -74,7 +74,7 @@ public class AtencionServiceImpl implements AtencionService {
     }
 
     @Override
-    public AtencionDto update(Long id, AtencionDto dto) {
+    public AtencionDTO update(Long id, AtencionDTO dto) {
         Atencion entity = getEntity(id);
         Paciente paciente = getPaciente(dto.getIdPaciente());
         Medico medico = getMedico(dto.getIdMedico());
@@ -98,14 +98,14 @@ public class AtencionServiceImpl implements AtencionService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<AtencionDto> getReportePorPaciente(Long idPaciente) {
+    public List<AtencionDTO> getReportePorPaciente(Long idPaciente) {
         getPaciente(idPaciente);
 
         List<Atencion> entities = atencionRepository.findByPacienteIdPacienteOrderByFechaAtencionDescHoraAtencionDesc(idPaciente);
-        List<AtencionDto> dtos = new ArrayList<>();
+        List<AtencionDTO> dtos = new ArrayList<>();
 
         for (Atencion entity : entities) {
-            AtencionDto dto = toDTO(entity);
+            AtencionDTO dto = toDTO(entity);
             dto.setMedicoResponsable(entity.getMedico().getNombreCompleto());
             dtos.add(dto);
         }
@@ -115,14 +115,14 @@ public class AtencionServiceImpl implements AtencionService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<AtencionDto> getReportePorMedico(Long idMedico) {
+    public List<AtencionDTO> getReportePorMedico(Long idMedico) {
         getMedico(idMedico);
 
         List<Atencion> entities = atencionRepository.findByMedicoIdMedicoOrderByFechaAtencionDescHoraAtencionDesc(idMedico);
-        List<AtencionDto> dtos = new ArrayList<>();
+        List<AtencionDTO> dtos = new ArrayList<>();
 
         for (Atencion entity : entities) {
-            AtencionDto dto = toDTO(entity);
+            AtencionDTO dto = toDTO(entity);
             dto.setPacienteAtendido(entity.getPaciente().getNombres() + " " + entity.getPaciente().getApellidos());
             dtos.add(dto);
         }
@@ -132,12 +132,12 @@ public class AtencionServiceImpl implements AtencionService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<AtencionDto> getReportePorFecha(Date fecha) {
+    public List<AtencionDTO> getReportePorFecha(Date fecha) {
         List<Atencion> entities = atencionRepository.findByFechaAtencionOrderByHoraAtencionAsc(fecha);
-        List<AtencionDto> dtos = new ArrayList<>();
+        List<AtencionDTO> dtos = new ArrayList<>();
 
         for (Atencion entity : entities) {
-            AtencionDto dto = toDTO(entity);
+            AtencionDTO dto = toDTO(entity);
             dto.setPaciente(entity.getPaciente().getNombres() + " " + entity.getPaciente().getApellidos());
             dto.setMedico(entity.getMedico().getNombreCompleto());
             dtos.add(dto);
@@ -176,8 +176,8 @@ public class AtencionServiceImpl implements AtencionService {
         return optionalMedico.get();
     }
 
-    private AtencionDto toDTO(Atencion entity) {
-        AtencionDto dto = new AtencionDto();
+    private AtencionDTO toDTO(Atencion entity) {
+        AtencionDTO dto = new AtencionDTO();
         dto.setId(entity.getId());
         dto.setFechaAtencion(entity.getFechaAtencion());
         dto.setHoraAtencion(entity.getHoraAtencion());

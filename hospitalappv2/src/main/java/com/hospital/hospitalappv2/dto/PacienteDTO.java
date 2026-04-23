@@ -1,12 +1,14 @@
-package com.hospital.hospitalapp.dto;
+package com.hospital.hospitalappv2.dto;
+
+import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import java.util.List;
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PacienteDto {
+public class PacienteDTO {
 
     private Long idPaciente;
 
@@ -42,6 +44,6 @@ public class PacienteDto {
     private Long idTipo;
 
     private String tipoUsuarioNombre;
-    private FichaPacienteDto fichaPaciente;
-    private List<AtencionDto> atenciones;
+    private FichaPacienteDTO fichaPaciente;
+    private List<AtencionDTO> atenciones;
 }

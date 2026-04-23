@@ -1,18 +1,19 @@
-package com.hospital.hospitalapp.repository;
+package com.hospital.hospitalappv2.repository;
 
 
-import com.hospital.hospitalapp.dto.reporte.MedicoEspecialidadDto;
-import com.hospital.hospitalapp.entity.Medico;
 import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
+import com.hospital.hospitalappv2.model.Medico;
 
 public interface MedicoRepository extends JpaRepository<Medico, Long> {
 
     boolean existsByRunMedico(String runMedico);
 
     @Query("""
-            select new com.hospital.hospitalapp.dto.reporte.MedicoEspecialidadDto(
+            select new com.hospital.hospitalappv2.dto.reporte.MedicoEspecialidadDto(
                 m.idMedico,
                 m.nombreCompleto,
                 m.especialidad,
@@ -21,5 +22,5 @@ public interface MedicoRepository extends JpaRepository<Medico, Long> {
             from Medico m
             order by m.especialidad, m.nombreCompleto
             """)
-    List<MedicoEspecialidadDto> findReporteEspecialidades();
+    List<Medico> findReporteEspecialidades();
 }

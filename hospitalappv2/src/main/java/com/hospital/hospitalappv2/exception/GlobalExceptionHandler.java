@@ -1,4 +1,4 @@
-package com.hospital.hospitalapp.exception;
+package com.hospital.hospitalappv2.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

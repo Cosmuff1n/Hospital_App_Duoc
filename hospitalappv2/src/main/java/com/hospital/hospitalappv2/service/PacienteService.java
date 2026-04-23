@@ -1,8 +1,7 @@
-package com.hospital.hospitalapp.service;
+package com.hospital.hospitalappv2.service;
 
 
-import com.hospital.hospitalapp.dto.PacienteDto;
-import com.hospital.hospitalapp.dto.reporte.HistorialPacienteReporteDto;
+import com.hospital.hospitalappv2.dto.PacienteDto;
 import java.util.List;
 
 public interface PacienteService {

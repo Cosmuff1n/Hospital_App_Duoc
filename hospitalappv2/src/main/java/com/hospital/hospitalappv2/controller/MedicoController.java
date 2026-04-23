@@ -1,12 +1,22 @@
-package com.hospital.hospitalapp.controller;
+package com.hospital.hospitalappv2.controller;
 
-import com.hospital.hospitalapp.dto.MedicoDto;
-import com.hospital.hospitalapp.service.MedicoService;
-import jakarta.validation.Valid;
 import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.hospital.hospitalappv2.dto.MedicoDTO;
+import com.hospital.hospitalappv2.service.MedicoService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/medicos")
@@ -19,22 +29,22 @@ public class MedicoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<MedicoDto>> findAll() {
+    public ResponseEntity<List<MedicoDTO>> findAll() {
         return ResponseEntity.ok(medicoService.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MedicoDto> findById(@PathVariable Long id) {
+    public ResponseEntity<MedicoDTO> findById(@PathVariable Long id) {
         return ResponseEntity.ok(medicoService.findById(id));
     }
 
     @PostMapping
-    public ResponseEntity<MedicoDto> create(@Valid @RequestBody MedicoDto dto) {
+    public ResponseEntity<MedicoDTO> create(@Valid @RequestBody MedicoDTO dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(medicoService.create(dto));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MedicoDto> update(@PathVariable Long id, @Valid @RequestBody MedicoDto dto) {
+    public ResponseEntity<MedicoDTO> update(@PathVariable Long id, @Valid @RequestBody MedicoDTO dto) {
         return ResponseEntity.ok(medicoService.update(id, dto));
     }
 
@@ -45,7 +55,7 @@ public class MedicoController {
     }
 
     @GetMapping("/reportes/especialidades")
-    public ResponseEntity<List<MedicoDto>> getReporteEspecialidades() {
+    public ResponseEntity<List<MedicoDTO>> getReporteEspecialidades() {
         return ResponseEntity.ok(medicoService.getReporteEspecialidades());
     }
 }

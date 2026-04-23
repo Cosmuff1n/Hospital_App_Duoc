@@ -1,16 +1,16 @@
-package com.hospital.hospitalapp.serviceimplementation;
+package com.hospital.hospitalappv2.serviceimplementation;
 
-import com.hospital.hospitalapp.dto.AtencionDto;
-import com.hospital.hospitalapp.dto.FichaPacienteDto;
-import com.hospital.hospitalapp.dto.PacienteDto;
-import com.hospital.hospitalapp.entity.Atencion;
-import com.hospital.hospitalapp.entity.FichaPaciente;
-import com.hospital.hospitalapp.entity.Paciente;
-import com.hospital.hospitalapp.entity.TipoUsuario;
-import com.hospital.hospitalapp.repository.AtencionRepository;
-import com.hospital.hospitalapp.repository.PacienteRepository;
-import com.hospital.hospitalapp.repository.TipoUsuarioRepository;
-import com.hospital.hospitalapp.service.PacienteService;
+import com.hospital.hospitalappv2.dto.AtencionDTO;
+import com.hospital.hospitalappv2.dto.FichaPacienteDTO;
+import com.hospital.hospitalappv2.dto.PacienteDTO;
+import com.hospital.hospitalappv2.model.Atencion;
+import com.hospital.hospitalappv2.model.FichaPaciente;
+import com.hospital.hospitalappv2.model.Paciente;
+import com.hospital.hospitalappv2.model.TipoUsuario;
+import com.hospital.hospitalappv2.repository.AtencionRepository;
+import com.hospital.hospitalappv2.repository.PacienteRepository;
+import com.hospital.hospitalappv2.repository.TipoUsuarioRepository;
+import com.hospital.hospitalappv2.service.PacienteService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -39,12 +39,12 @@ public class PacienteServiceImpl implements PacienteService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<PacienteDto> findAll() {
+    public List<PacienteDTO> findAll() {
         List<Paciente> entities = pacienteRepository.findAll();
-        List<PacienteDto> dtos = new ArrayList<>();
+        List<PacienteDTO> dtos = new ArrayList<>();
 
         for (Paciente entity : entities) {
-            PacienteDto dto = toDTO(entity);
+            PacienteDTO dto = toDTO(entity);
             dtos.add(dto);
         }
 
@@ -53,13 +53,13 @@ public class PacienteServiceImpl implements PacienteService {
 
     @Override
     @Transactional(readOnly = true)
-    public PacienteDto findById(Long id) {
+    public PacienteDTO findById(Long id) {
         Paciente entity = getEntity(id);
         return toDTO(entity);
     }
 
     @Override
-    public PacienteDto create(PacienteDto dto) {
+    public PacienteDTO create(PacienteDTO dto) {
         boolean pacienteExiste = pacienteRepository.existsByRun(dto.getRun());
 
         if (pacienteExiste) {
@@ -81,7 +81,7 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    public PacienteDto update(Long id, PacienteDto dto) {
+    public PacienteDTO update(Long id, PacienteDTO dto) {
         Paciente entity = getEntity(id);
 
         if (!entity.getRun().equals(dto.getRun())) {
@@ -113,7 +113,7 @@ public class PacienteServiceImpl implements PacienteService {
 
     @Override
     @Transactional(readOnly = true)
-    public PacienteDto getHistorialCompleto(Long idPaciente) {
+    public PacienteDTO getHistorialCompleto(Long idPaciente) {
         Optional<Paciente> optionalPaciente = pacienteRepository.findDetalleById(idPaciente);
 
         if (optionalPaciente.isEmpty()) {
@@ -121,23 +121,23 @@ public class PacienteServiceImpl implements PacienteService {
         }
 
         Paciente paciente = optionalPaciente.get();
-        PacienteDto dto = toDTO(paciente);
+        PacienteDTO dto = toDTO(paciente);
 
         FichaPaciente ficha = paciente.getFichaPaciente();
 
         if (ficha != null) {
-            dto.setFichaPaciente(toFichaDto(ficha));
+            dto.setFichaPaciente(toFichaDTO(ficha));
         }
 
         List<Atencion> atenciones = atencionRepository.findByPacienteIdPacienteOrderByFechaAtencionDescHoraAtencionDesc(idPaciente);
-        List<AtencionDto> atencionDtos = new ArrayList<>();
+        List<AtencionDTO> atencionDTOs = new ArrayList<>();
 
         for (Atencion atencion : atenciones) {
-            AtencionDto atencionDto = toAtencionDtoForPacienteHistorial(atencion);
-            atencionDtos.add(atencionDto);
+            AtencionDTO atencionDTO = toAtencionDTOForPacienteHistorial(atencion);
+            atencionDTOs.add(atencionDTO);
         }
 
-        dto.setAtenciones(atencionDtos);
+        dto.setAtenciones(atencionDTOs);
 
         return dto;
     }
@@ -162,8 +162,8 @@ public class PacienteServiceImpl implements PacienteService {
         return optionalTipoUsuario.get();
     }
 
-    private PacienteDto toDTO(Paciente entity) {
-        PacienteDto dto = new PacienteDto();
+    private PacienteDTO toDTO(Paciente entity) {
+        PacienteDTO dto = new PacienteDTO();
         dto.setIdPaciente(entity.getIdPaciente());
         dto.setRun(entity.getRun());
         dto.setNombres(entity.getNombres());
@@ -175,8 +175,8 @@ public class PacienteServiceImpl implements PacienteService {
         return dto;
     }
 
-    private FichaPacienteDto toFichaDto(FichaPaciente entity) {
-        FichaPacienteDto dto = new FichaPacienteDto();
+    private FichaPacienteDTO toFichaDTO(FichaPaciente entity) {
+        FichaPacienteDTO dto = new FichaPacienteDTO();
         dto.setIdPaciente(entity.getIdPaciente());
         dto.setDatosPersonales(entity.getDatosPersonales());
         dto.setDatosPersonales2(entity.getDatosPersonales2());
@@ -186,8 +186,8 @@ public class PacienteServiceImpl implements PacienteService {
         return dto;
     }
 
-    private AtencionDto toAtencionDtoForPacienteHistorial(Atencion entity) {
-        AtencionDto dto = new AtencionDto();
+    private AtencionDTO toAtencionDTOForPacienteHistorial(Atencion entity) {
+        AtencionDTO dto = new AtencionDTO();
         dto.setId(entity.getId());
         dto.setFechaAtencion(entity.getFechaAtencion());
         dto.setHoraAtencion(entity.getHoraAtencion());

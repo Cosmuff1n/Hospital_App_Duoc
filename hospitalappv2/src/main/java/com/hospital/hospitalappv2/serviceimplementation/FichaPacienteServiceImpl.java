@@ -1,12 +1,12 @@
-package com.hospital.hospitalapp.serviceimplementation;
+package com.hospital.hospitalappv2.serviceimplementation;
 
 
-import com.hospital.hospitalapp.dto.FichaPacienteDto;
-import com.hospital.hospitalapp.entity.FichaPaciente;
-import com.hospital.hospitalapp.entity.Paciente;
-import com.hospital.hospitalapp.repository.FichaPacienteRepository;
-import com.hospital.hospitalapp.repository.PacienteRepository;
-import com.hospital.hospitalapp.service.FichaPacienteService;
+import com.hospital.hospitalappv2.dto.FichaPacienteDTO;
+import com.hospital.hospitalappv2.model.FichaPaciente;
+import com.hospital.hospitalappv2.model.Paciente;
+import com.hospital.hospitalappv2.repository.FichaPacienteRepository;
+import com.hospital.hospitalappv2.repository.PacienteRepository;
+import com.hospital.hospitalappv2.service.FichaPacienteService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -32,12 +32,12 @@ public class FichaPacienteServiceImpl implements FichaPacienteService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<FichaPacienteDto> findAll() {
+    public List<FichaPacienteDTO> findAll() {
         List<FichaPaciente> entities = fichaPacienteRepository.findAll();
-        List<FichaPacienteDto> dtos = new ArrayList<>();
+        List<FichaPacienteDTO> dtos = new ArrayList<>();
 
         for (FichaPaciente entity : entities) {
-            FichaPacienteDto dto = toDTO(entity);
+            FichaPacienteDTO dto = toDTO(entity);
             dtos.add(dto);
         }
 
@@ -46,13 +46,13 @@ public class FichaPacienteServiceImpl implements FichaPacienteService {
 
     @Override
     @Transactional(readOnly = true)
-    public FichaPacienteDto findById(Long idPaciente) {
+    public FichaPacienteDTO findById(Long idPaciente) {
         FichaPaciente entity = getEntity(idPaciente);
         return toDTO(entity);
     }
 
     @Override
-    public FichaPacienteDto create(FichaPacienteDto dto) {
+    public FichaPacienteDTO create(FichaPacienteDTO dto) {
         boolean fichaExiste = fichaPacienteRepository.existsById(dto.getIdPaciente());
 
         if (fichaExiste) {
@@ -74,7 +74,7 @@ public class FichaPacienteServiceImpl implements FichaPacienteService {
     }
 
     @Override
-    public FichaPacienteDto update(Long idPaciente, FichaPacienteDto dto) {
+    public FichaPacienteDTO update(Long idPaciente, FichaPacienteDTO dto) {
         FichaPaciente entity = getEntity(idPaciente);
 
         entity.setDatosPersonales(dto.getDatosPersonales());
@@ -113,8 +113,8 @@ public class FichaPacienteServiceImpl implements FichaPacienteService {
         return optionalPaciente.get();
     }
 
-    private FichaPacienteDto toDTO(FichaPaciente entity) {
-        FichaPacienteDto dto = new FichaPacienteDto();
+    private FichaPacienteDTO toDTO(FichaPaciente entity) {
+        FichaPacienteDTO dto = new FichaPacienteDTO();
         dto.setIdPaciente(entity.getIdPaciente());
         dto.setDatosPersonales(entity.getDatosPersonales());
         dto.setDatosPersonales2(entity.getDatosPersonales2());

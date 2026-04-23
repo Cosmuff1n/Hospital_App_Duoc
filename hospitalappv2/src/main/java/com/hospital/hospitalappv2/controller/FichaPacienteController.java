@@ -1,7 +1,7 @@
-package com.hospital.hospitalapp.controller;
+package com.hospital.hospitalappv2.controller;
 
-import com.hospital.hospitalapp.dto.FichaPacienteDto;
-import com.hospital.hospitalapp.service.FichaPacienteService;
+import com.hospital.hospitalappv2.dto.FichaPacienteDTO;
+import com.hospital.hospitalappv2.service.FichaPacienteService;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.http.HttpStatus;
@@ -19,22 +19,22 @@ public class FichaPacienteController {
     }
 
     @GetMapping
-    public ResponseEntity<List<FichaPacienteDto>> findAll() {
+    public ResponseEntity<List<FichaPacienteDTO>> findAll() {
         return fichaPacienteService.findAll();
     }
 
     @GetMapping("/{idPaciente}")
-    public ResponseEntity<FichaPacienteDto> findById(@PathVariable Long idPaciente) {
+    public ResponseEntity<FichaPacienteDTO> findById(@PathVariable Long idPaciente) {
         return fichaPacienteService.findById(idPaciente);
     }
 
     @PostMapping
-    public ResponseEntity<FichaPacienteDto> create(@Valid @RequestBody FichaPacienteDto dto) {
+    public ResponseEntity<FichaPacienteDTO> create(@Valid @RequestBody FichaPacienteDTO dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(fichaPacienteService.create(dto));
     }
 
     @PutMapping("/{idPaciente}")
-    public ResponseEntity<FichaPacienteDto> update(@PathVariable Long idPaciente, @Valid @RequestBody FichaPacienteDto dto) {
+    public ResponseEntity<FichaPacienteDTO> update(@PathVariable Long idPaciente, @Valid @RequestBody FichaPacienteDTO dto) {
         return fichaPacienteService.update(idPaciente, dto);
     }
 

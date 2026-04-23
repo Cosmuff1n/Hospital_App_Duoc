@@ -1,7 +1,6 @@
-package com.hospital.hospitalapp.service;
+package com.hospital.hospitalappv2.service;
 
-import com.hospital.hospitalapp.dto.TipoUsuarioDTO;
-import com.hospital.hospitalapp.dto.reporte.CostoPorTipoUsuarioDTO;
+import com.hospital.hospitalappv2.dto.TipoUsuarioDTO;
 import java.util.List;
 
 public interface TipoUsuarioService {

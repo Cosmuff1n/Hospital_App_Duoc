@@ -1,8 +1,9 @@
-package com.hospital.hospitalapp.dto;
+package com.hospital.hospitalappv2.dto;
+
+import java.math.BigDecimal;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TipoUsuarioDto {
+public class TipoUsuarioDTO {
 
     private Long id;
 

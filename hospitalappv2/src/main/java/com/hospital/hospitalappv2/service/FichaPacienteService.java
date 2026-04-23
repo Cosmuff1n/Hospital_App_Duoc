@@ -1,8 +1,9 @@
-package com.hospital.hospitalapp.service;
+package com.hospital.hospitalappv2.service;
 
 
-import com.hospital.hospitalapp.dto.FichaPacienteDTO;
 import java.util.List;
+
+import com.hospital.hospitalappv2.dto.FichaPacienteDTO;
 
 public interface FichaPacienteService {
     List<FichaPacienteDTO> findAll();

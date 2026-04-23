@@ -1,6 +1,6 @@
-package com.hospital.hospitalapp.repository;
+package com.hospital.hospitalappv2.repository;
 
-import com.hospital.hospitalapp.entity.TipoUsuario;
+import com.hospital.hospitalappv2.model.TipoUsuario;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

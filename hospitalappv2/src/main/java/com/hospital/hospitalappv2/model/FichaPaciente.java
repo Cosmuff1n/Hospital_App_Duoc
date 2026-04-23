@@ -1,4 +1,4 @@
-package com.hospital.hospitalapp.model;
+package com.hospital.hospitalappv2.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
