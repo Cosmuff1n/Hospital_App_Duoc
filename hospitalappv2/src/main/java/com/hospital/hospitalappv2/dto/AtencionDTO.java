@@ -1,11 +1,13 @@
-package com.hospital.hospitalapp.dto;
+package com.hospital.hospitalappv2.dto;
+
+import java.math.BigDecimal;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import java.math.BigDecimal;
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AtencionDto {
+public class AtencionDTO {
 
     private Long id;
 
