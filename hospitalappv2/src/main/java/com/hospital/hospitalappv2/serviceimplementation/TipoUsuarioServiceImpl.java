@@ -1,17 +1,19 @@
 package com.hospital.hospitalappv2.serviceimplementation;
 
-import com.hospital.hospitalappv2.dto.TipoUsuarioDTO;
-import com.hospital.hospitalappv2.model.TipoUsuario;
-import com.hospital.hospitalappv2.repository.TipoUsuarioRepository;
-import com.hospital.hospitalappv2.service.TipoUsuarioService;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
+
+import com.hospital.hospitalappv2.dto.TipoUsuarioDTO;
+import com.hospital.hospitalappv2.model.TipoUsuario;
+import com.hospital.hospitalappv2.repository.TipoUsuarioRepository;
+import com.hospital.hospitalappv2.service.TipoUsuarioService;
 
 @Service
 @Transactional

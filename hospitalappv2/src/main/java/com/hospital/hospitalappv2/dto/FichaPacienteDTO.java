@@ -30,4 +30,8 @@ public class FichaPacienteDTO {
 
     @Size(max = 100)
     private String datosPersonales5;
+
+    public Long getIdPaciente() {
+        throw new UnsupportedOperationException("Aún no es soportada.");
+    }
 }

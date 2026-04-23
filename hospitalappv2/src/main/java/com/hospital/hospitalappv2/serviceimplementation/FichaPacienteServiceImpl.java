@@ -1,19 +1,21 @@
 package com.hospital.hospitalappv2.serviceimplementation;
 
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
+
 import com.hospital.hospitalappv2.dto.FichaPacienteDTO;
 import com.hospital.hospitalappv2.model.FichaPaciente;
 import com.hospital.hospitalappv2.model.Paciente;
 import com.hospital.hospitalappv2.repository.FichaPacienteRepository;
 import com.hospital.hospitalappv2.repository.PacienteRepository;
 import com.hospital.hospitalappv2.service.FichaPacienteService;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @Transactional
