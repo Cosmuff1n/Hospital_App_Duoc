@@ -32,13 +32,13 @@ public class AtencionController {
     }
 
     @GetMapping
-    public ResponseEntity<List<AtencionDTO>> findAll() {
-        return ResponseEntity.ok(atencionService.findAll());
+    public List<AtencionDTO> findAll() {
+        return atencionService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AtencionDTO> findById(@PathVariable Long id) {
-        return ResponseEntity.ok(atencionService.findById(id));
+    public AtencionDTO findById(@PathVariable Long id) {
+        return atencionService.findById(id);
     }
 
     @PostMapping
@@ -47,8 +47,8 @@ public class AtencionController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AtencionDTO> update(@PathVariable Long id, @Valid @RequestBody AtencionDTO dto) {
-        return ResponseEntity.ok(atencionService.update(id, dto));
+    public AtencionDTO update(@PathVariable Long id, @Valid @RequestBody AtencionDTO dto) {
+        return atencionService.update(id, dto);
     }
 
     @DeleteMapping("/{id}")
@@ -58,19 +58,19 @@ public class AtencionController {
     }
 
     @GetMapping("/reportes/paciente/{idPaciente}")
-    public ResponseEntity<List<AtencionDTO>> getReportePorPaciente(@PathVariable Long idPaciente) {
-        return ResponseEntity.ok(atencionService.getReportePorPaciente(idPaciente));
+    public List<AtencionDTO> getReportePorPaciente(@PathVariable Long idPaciente) {
+        return atencionService.getReportePorPaciente(idPaciente);
     }
 
     @GetMapping("/reportes/medico/{idMedico}")
-    public ResponseEntity<List<AtencionDTO>> getReportePorMedico(@PathVariable Long idMedico) {
-        return ResponseEntity.ok(atencionService.getReportePorMedico(idMedico));
+    public List<AtencionDTO> getReportePorMedico(@PathVariable Long idMedico) {
+        return atencionService.getReportePorMedico(idMedico);
     }
 
     @GetMapping("/reportes/fecha")
-    public ResponseEntity<List<AtencionDTO>> getReportePorFecha(
+    public List<AtencionDTO> getReportePorFecha(
             @RequestParam("fecha") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha
     ) {
-        return ResponseEntity.ok(atencionService.getReportePorFecha(fecha));
+        return atencionService.getReportePorFecha(fecha);
     }
 }

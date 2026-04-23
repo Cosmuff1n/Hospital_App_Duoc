@@ -31,11 +31,11 @@ public class PacienteController {
 
     @GetMapping
     public ResponseEntity<List<PacienteDTO>> findAll() {
-        return pacienteService.findAll();
+        return (ResponseEntity<List<PacienteDTO>>) pacienteService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PacienteDTO> findById(@PathVariable Long id) {
+    public PacienteDTO findById(@PathVariable Long id) {
         return pacienteService.findById(id);
     }
 
@@ -45,7 +45,7 @@ public class PacienteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PacienteDTO> update(@PathVariable Long id, @Valid @RequestBody PacienteDTO dto) {
+    public PacienteDTO update(@PathVariable Long id, @Valid @RequestBody PacienteDTO dto) {
         return pacienteService.update(id, dto);
     }
 
@@ -56,7 +56,7 @@ public class PacienteController {
     }
 
     @GetMapping("/{id}/historial")
-    public ResponseEntity<PacienteDTO> getHistorial(@PathVariable Long id) {
+    public PacienteDTO getHistorial(@PathVariable Long id) {
         return pacienteService.getHistorialCompleto(id);
     }
 }

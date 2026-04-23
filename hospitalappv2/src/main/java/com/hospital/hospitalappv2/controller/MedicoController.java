@@ -29,13 +29,13 @@ public class MedicoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<MedicoDTO>> findAll() {
-        return ResponseEntity.ok(medicoService.findAll());
+    public List<MedicoDTO> findAll() {
+        return medicoService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MedicoDTO> findById(@PathVariable Long id) {
-        return ResponseEntity.ok(medicoService.findById(id));
+    public MedicoDTO findById(@PathVariable Long id) {
+        return medicoService.findById(id);
     }
 
     @PostMapping
@@ -44,8 +44,8 @@ public class MedicoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MedicoDTO> update(@PathVariable Long id, @Valid @RequestBody MedicoDTO dto) {
-        return ResponseEntity.ok(medicoService.update(id, dto));
+    public MedicoDTO update(@PathVariable Long id, @Valid @RequestBody MedicoDTO dto) {
+        return medicoService.update(id, dto);
     }
 
     @DeleteMapping("/{id}")
@@ -55,7 +55,7 @@ public class MedicoController {
     }
 
     @GetMapping("/reportes/especialidades")
-    public ResponseEntity<List<MedicoDTO>> getReporteEspecialidades() {
-        return ResponseEntity.ok(medicoService.getReporteEspecialidades());
+    public List<MedicoDTO> getReporteEspecialidades() {
+        return medicoService.getReporteEspecialidades();
     }
 }

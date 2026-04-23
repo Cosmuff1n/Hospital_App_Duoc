@@ -30,12 +30,12 @@ public class TipoUsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<List<TipoUsuarioDTO>> findAll() {
+    public List<TipoUsuarioDTO> findAll() {
         return tipoUsuarioService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TipoUsuarioDTO> findById(@PathVariable Long id) {
+    public TipoUsuarioDTO findById(@PathVariable Long id) {
         return tipoUsuarioService.findById(id);
     }
 
@@ -45,7 +45,7 @@ public class TipoUsuarioController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<TipoUsuarioDTO> update(@PathVariable Long id, @Valid @RequestBody TipoUsuarioDTO dto) {
+    public TipoUsuarioDTO update(@PathVariable Long id, @Valid @RequestBody TipoUsuarioDTO dto) {
         return tipoUsuarioService.update(id, dto);
     }
 
@@ -56,7 +56,7 @@ public class TipoUsuarioController {
     }
 
     @GetMapping("/reportes/costos")
-    public ResponseEntity<List<TipoUsuarioDTO>> getReporteCostos() {
+    public List<TipoUsuarioDTO> getReporteCostos() {
         return tipoUsuarioService.getReporteCostosPorTipoUsuario();
     }
 }

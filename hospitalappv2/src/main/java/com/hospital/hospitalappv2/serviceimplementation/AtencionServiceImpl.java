@@ -1,5 +1,15 @@
 package com.hospital.hospitalappv2.serviceimplementation;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
+
 import com.hospital.hospitalappv2.dto.AtencionDTO;
 import com.hospital.hospitalappv2.model.Atencion;
 import com.hospital.hospitalappv2.model.Medico;
@@ -8,14 +18,6 @@ import com.hospital.hospitalappv2.repository.AtencionRepository;
 import com.hospital.hospitalappv2.repository.MedicoRepository;
 import com.hospital.hospitalappv2.repository.PacienteRepository;
 import com.hospital.hospitalappv2.service.AtencionService;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @Transactional
@@ -38,8 +40,8 @@ public class AtencionServiceImpl implements AtencionService {
     @Override
     @Transactional(readOnly = true)
     public List<AtencionDTO> findAll() {
-        List<Atencion> entities = atencionRepository.findAll();
         List<AtencionDTO> dtos = new ArrayList<>();
+        List<Atencion> entities = atencionRepository.findAll();
 
         for (Atencion entity : entities) {
             AtencionDTO dto = toDTO(entity);

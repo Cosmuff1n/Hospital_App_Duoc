@@ -1,9 +1,11 @@
 package com.hospital.hospitalappv2.repository;
 
-import com.hospital.hospitalappv2.model.TipoUsuario;
 import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
+import com.hospital.hospitalappv2.model.TipoUsuario;
 
 public interface TipoUsuarioRepository extends JpaRepository<TipoUsuario, Long> {
 

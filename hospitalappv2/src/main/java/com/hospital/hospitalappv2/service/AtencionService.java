@@ -1,8 +1,9 @@
 package com.hospital.hospitalappv2.service;
 
-import com.hospital.hospitalappv2.dto.AtencionDTO;
 import java.util.Date;
 import java.util.List;
+
+import com.hospital.hospitalappv2.dto.AtencionDTO;
 
 public interface AtencionService {
     List<AtencionDTO> findAll();
@@ -10,7 +11,7 @@ public interface AtencionService {
     AtencionDTO create(AtencionDTO dto);
     AtencionDTO update(Long id, AtencionDTO dto);
     void delete(Long id);
-    List<AtencionPacienteReporteDTO> getReportePorPaciente(Long idPaciente);
-    List<AtencionMedicoReporteDTO> getReportePorMedico(Long idMedico);
-    List<AtencionFechaReporteDTO> getReportePorFecha(Date fecha);
+    List<AtencionDTO>getReportePorPaciente(Long idPaciente);
+    List<AtencionDTO> getReportePorMedico(Long idMedico);
+    List<AtencionDTO> getReportePorFecha(Date fecha);
 }

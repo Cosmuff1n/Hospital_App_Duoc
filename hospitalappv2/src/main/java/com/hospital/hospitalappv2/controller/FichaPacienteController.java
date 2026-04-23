@@ -1,12 +1,22 @@
 package com.hospital.hospitalappv2.controller;
 
-import com.hospital.hospitalappv2.dto.FichaPacienteDTO;
-import com.hospital.hospitalappv2.service.FichaPacienteService;
-import jakarta.validation.Valid;
 import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.hospital.hospitalappv2.dto.FichaPacienteDTO;
+import com.hospital.hospitalappv2.service.FichaPacienteService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/fichas-paciente")
@@ -19,12 +29,12 @@ public class FichaPacienteController {
     }
 
     @GetMapping
-    public ResponseEntity<List<FichaPacienteDTO>> findAll() {
+    public List<FichaPacienteDTO> findAll() {
         return fichaPacienteService.findAll();
     }
 
     @GetMapping("/{idPaciente}")
-    public ResponseEntity<FichaPacienteDTO> findById(@PathVariable Long idPaciente) {
+    public FichaPacienteDTO findById(@PathVariable Long idPaciente) {
         return fichaPacienteService.findById(idPaciente);
     }
 
@@ -34,7 +44,7 @@ public class FichaPacienteController {
     }
 
     @PutMapping("/{idPaciente}")
-    public ResponseEntity<FichaPacienteDTO> update(@PathVariable Long idPaciente, @Valid @RequestBody FichaPacienteDTO dto) {
+    public FichaPacienteDTO update(@PathVariable Long idPaciente, @Valid @RequestBody FichaPacienteDTO dto) {
         return fichaPacienteService.update(idPaciente, dto);
     }
 

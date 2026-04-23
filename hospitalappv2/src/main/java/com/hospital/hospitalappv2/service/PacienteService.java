@@ -1,14 +1,15 @@
 package com.hospital.hospitalappv2.service;
 
 
-import com.hospital.hospitalappv2.dto.PacienteDto;
 import java.util.List;
 
+import com.hospital.hospitalappv2.dto.PacienteDTO;
+
 public interface PacienteService {
-    List<PacienteDto> findAll();
+    List<PacienteDTO> findAll();
     PacienteDTO findById(Long id);
-    PacienteDTO create(PacienteDto dto);
-    PacienteDTO update(Long id, PacienteDto dto);
+    PacienteDTO create(PacienteDTO dto);
+    PacienteDTO update(Long id, PacienteDTO dto);
     void delete(Long id);
-    HistorialPacienteReporteDto getHistorialCompleto(Long idPaciente);
+    PacienteDTO getHistorialCompleto(Long idPaciente);
 }

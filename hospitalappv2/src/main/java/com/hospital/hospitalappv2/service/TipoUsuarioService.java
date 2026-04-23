@@ -1,7 +1,8 @@
 package com.hospital.hospitalappv2.service;
 
-import com.hospital.hospitalappv2.dto.TipoUsuarioDTO;
 import java.util.List;
+
+import com.hospital.hospitalappv2.dto.TipoUsuarioDTO;
 
 public interface TipoUsuarioService {
     List<TipoUsuarioDTO> findAll();
@@ -9,5 +10,5 @@ public interface TipoUsuarioService {
     TipoUsuarioDTO create(TipoUsuarioDTO dto);
     TipoUsuarioDTO update(Long id, TipoUsuarioDTO dto);
     void delete(Long id);
-    List<CostoPorTipoUsuarioDTO> getReporteCostosPorTipoUsuario();
+    List<TipoUsuarioDTO> getReporteCostosPorTipoUsuario();
 }
